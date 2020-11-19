@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Homepage from './Containers/Homepage'
 import About from './Containers/About';
+import Contactus from './Containers/Contactus';
 
 
 const itemsurl = "http://localhost:3000/items"
@@ -35,6 +36,11 @@ class App extends Component {
             <Route exact path='/about' render={() => {
               return(
                 <About />
+              )
+            }} />
+            <Route exact path='/contact' render={() => {
+              return(
+                <Contactus />
               )
             }} />
         </Switch>
