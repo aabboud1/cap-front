@@ -1,25 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Homepage from './Containers/Homepage'
+import About from './Containers/About';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const itemsurl = "http://localhost:3000/items"
+
+class App extends Component {
+
+  state = {
+    items: []
+  }
+
+  getItems = () => {
+      fetch(itemsurl)
+      .then(r => r.json())
+      .then(data => {
+        this.setState({items: data})
+      })
+  }
+
+  componentDidMount = () => {
+    this.getItems()
+  }
+
+  render() {
+    return (
+      <Router>
+        <Switch>
+          <Route exact path='/' render={() => {
+            return(
+              <Homepage items={this.state.items}/>
+            )}}/>
+            <Route exact path='/about' render={() => {
+              return(
+                <About />
+              )
+            }} />
+        </Switch>
+      </Router>
+    );
+  }
 }
 
 export default App;
+
