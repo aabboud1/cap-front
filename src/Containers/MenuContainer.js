@@ -9,9 +9,9 @@ class MenuContainer extends Component {
         return (
             <>
             <Navbar />
-            <Cart items={items} removeMyItem={removeMyItem}/>
+            {/* <Cart items={items} removeMyItem={removeMyItem}/> */}
             <br></br><br></br>
-            <button className="btn btn-primary btn-lg btn-block">Love what you see? Start your order here!</button>
+            <a href="http://localhost:3001/order" class="btn btn-primary btn-lg btn-block">Like what you see? Click here to start your order!!</a>
             <br></br><br></br>
             <div className="ui four column grid">
                 <div className="row">
@@ -19,7 +19,9 @@ class MenuContainer extends Component {
                         return <MenuCard 
                         item={item} 
                         key={item.id} 
-                        addMyItem={addMyItem}/> })}
+                        addMyItem={addMyItem}
+                        disableAdd={this.props.disableAdd}
+                        disableRemove={this.props.disableRemove} /> })}
                 </div>
             </div>
             </>

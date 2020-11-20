@@ -4,6 +4,7 @@ import Homepage from './Containers/Homepage'
 import About from './Containers/About';
 import Contactus from './Containers/Contactus';
 import MenuContainer from './Containers/MenuContainer';
+import Order from './Containers/Order';
 
 
 const itemsurl = "http://localhost:3000/items"
@@ -62,7 +63,17 @@ class App extends Component {
             return(
               <MenuContainer items={this.state.items}
                               removeMyItem={this.removeMyItem}
-                              addMyItem={this.addMyItem}/>
+                              addMyItem={this.addMyItem}
+                              disableAdd={true}
+                              disableRemove={true}/>
+            )}}/>
+            <Route exact path='/order' render={() => {
+            return(
+              <Order items={this.state.items}
+                     removeMyItem={this.removeMyItem}
+                     addMyItem={this.addMyItem}
+                     disableAdd={false}
+                     disableRemove={false}/>
             )}}/>
         </Switch>
       </Router>

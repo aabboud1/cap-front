@@ -36,13 +36,12 @@ const MenuCard = (props) => {
             </span>*/}
             <span>
               <div className="ui center aligned segment basic">
-            
-                  <button onClick={() => {props.addMyItem(props.item.id)}}>
-                  Add Item
-                  </button>
-                  <button onClick={() => {props.removeMyItem(props.item.id)}}>
-                  Remove Item
-                  </button>
+                {props.disableAdd ? null :
+                  <button onClick={() => {props.addMyItem(props.item.id)}}>Add Item</button>
+                }
+                {props.disableRemove ? null :
+                  <button onClick={() => {props.removeMyItem(props.item.id)}}>Remove Item</button>
+                }
                 
               </div>
             </span>
