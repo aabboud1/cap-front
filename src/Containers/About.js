@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AboutInfo from '../Components/AboutInfo';
+import Comments from '../Components/Comments';
 import Footer from '../Components/Footer';
 import Header from '../Components/Header';
 import Navbar from '../Components/Navbar'
@@ -12,6 +13,7 @@ class About extends Component {
                 <Navbar />
                 <Header />
                 <AboutInfo/>
+                {/* <Comments /> */}
                 <Footer />
                 
             </>

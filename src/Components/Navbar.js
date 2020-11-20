@@ -18,6 +18,7 @@ class Navbar extends Component {
                         <li><a href="http://localhost:3001/">Home</a></li>
                         <li><a href="http://localhost:3001/about">About</a></li>
                         <li><a href="http://localhost:3001/contact">Contact</a></li>
+                        <li><a href="http://localhost:3001/menu">Menu</a></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
                         <li><a href="#"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>

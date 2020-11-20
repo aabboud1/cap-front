@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Homepage from './Containers/Homepage'
 import About from './Containers/About';
 import Contactus from './Containers/Contactus';
+import MenuContainer from './Containers/MenuContainer';
 
 
 const itemsurl = "http://localhost:3000/items"
@@ -16,14 +17,28 @@ class App extends Component {
   getItems = () => {
       fetch(itemsurl)
       .then(r => r.json())
-      .then(data => {
-        this.setState({items: data})
+      .then(item => {
+        this.setState({items: item})
       })
   }
 
   componentDidMount = () => {
     this.getItems()
   }
+
+  _toggleItemSelection = (id, flag) => {
+    for (let i = 0; i < this.state.items.length; i++) {
+      let currItem = this.state.items[i];
+      if (currItem.id === id) {
+        currItem.selected = flag;
+      }
+    }
+    this.setState({items: this.state.items});
+  }
+
+  removeMyItem = (id) => this._toggleItemSelection(id, false);
+  addMyItem = (id) => this._toggleItemSelection(id, true);
+
 
   render() {
     return (
@@ -43,6 +58,12 @@ class App extends Component {
                 <Contactus />
               )
             }} />
+             <Route exact path='/menu' render={() => {
+            return(
+              <MenuContainer items={this.state.items}
+                              removeMyItem={this.removeMyItem}
+                              addMyItem={this.addMyItem}/>
+            )}}/>
         </Switch>
       </Router>
     );
