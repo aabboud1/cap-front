@@ -9,11 +9,11 @@ const MenuCard = (props) => {
         //   onClick={() => {props.handleMyBots(props.bot.id)}}
         >
           <div className="image">
-            <img alt="oh no!" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf--VsVjUM5_fCeMAbKlMWuicLoOOJldHK7A&usqp=CAU' />
+            <img alt="oh no!" src={props.item.image} />
           </div>
           <div className="content">
             <div className="header">
-              {props.item.itemName}
+              {props.item.name}
               {/* <i className={botTypeClasses[props.bot.bot_class]} /> */}
             </div>
             <div className="meta text-wrap">
@@ -21,14 +21,11 @@ const MenuCard = (props) => {
             </div>
           </div>
           <div className="extra content">
-            <span>
-              {/* <i className="icon heartbeat" /> */}
-              Quantity: {props.item.qunanty}
-            </span>
+            
   
             <span>
               {/* <i className="icon lightning"  /> */}
-              <bold>Type: {props.item.foodType}</bold>
+              <bold>Type: {props.item.category}</bold>
             </span>
             {/* <span>
               <i className="icon shield" />

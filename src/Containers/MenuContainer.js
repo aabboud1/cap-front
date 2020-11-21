@@ -9,7 +9,7 @@ class MenuContainer extends Component {
         return (
             <>
             <Navbar />
-            {/* <Cart items={items} removeMyItem={removeMyItem}/> */}
+            <Cart items={items} removeMyItem={removeMyItem}/>
             <br></br><br></br>
             <a href="http://localhost:3001/order" class="btn btn-primary btn-lg btn-block">Like what you see? Click here to start your order!!</a>
             <br></br><br></br>

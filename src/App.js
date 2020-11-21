@@ -8,11 +8,13 @@ import Order from './Containers/Order';
 
 
 const itemsurl = "http://localhost:3000/items"
+const orderurl = 'http://localhost:3000/orders'
 
 class App extends Component {
 
   state = {
-    items: []
+    items: [],
+    cartItems: []
   }
 
   getItems = () => {
@@ -37,8 +39,30 @@ class App extends Component {
     this.setState({items: this.state.items});
   }
 
-  removeMyItem = (id) => this._toggleItemSelection(id, false);
-  addMyItem = (id) => this._toggleItemSelection(id, true);
+  removeMyItem = (id) => {this._toggleItemSelection(id, false)};
+  addMyItem = (id) => {
+      this._toggleItemSelection(id, true)
+      this.setState({cartItems: id})};
+
+    createNewOrder = (e) => {
+      fetch(orderurl, {
+          method: 'POST',
+          headers: { 
+              'Content-Type': 'application/json'
+              // 'Authentication': `Bearer ${localStorage.getItem('token')}`
+          },
+          body: JSON.stringify({ 
+              // name: e.target.elements[0].value,
+              // price: e.target.elements[1].value,
+              // deadline: e.target.elements[2].value
+          })
+      })
+      .then((res) => res.json())
+      .then((data) => {
+          console.log(data)
+      })
+
+  }
 
 
   render() {
@@ -64,16 +88,12 @@ class App extends Component {
               <MenuContainer items={this.state.items}
                               removeMyItem={this.removeMyItem}
                               addMyItem={this.addMyItem}
-                              disableAdd={true}
-                              disableRemove={true}/>
+                              disableAdd={false}
+                              disableRemove={false}/>
             )}}/>
             <Route exact path='/order' render={() => {
             return(
-              <Order items={this.state.items}
-                     removeMyItem={this.removeMyItem}
-                     addMyItem={this.addMyItem}
-                     disableAdd={false}
-                     disableRemove={false}/>
+              <Order createNewOrder={this.createNewOrder}/>
             )}}/>
         </Switch>
       </Router>

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import MenuCard from './MenuCard';
 
 class Cart extends Component {
+  
+  
     render() {
+
         const { items, removeMyItem } = this.props
         return (
             <div className="ui segment inverted olive bot-army">

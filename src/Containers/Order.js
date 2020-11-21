@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import MenuContainer from './MenuContainer';
+import Form from '../Components/Form';
+
 
 class Order extends Component {
     render() {
+
+
+
         return (
             <div>
-                
-                <MenuContainer items={this.props.items}
-                              removeMyItem={this.props.removeMyItem}
-                              addMyItem={this.props.addMyItem}
-                              disableAdd={this.props.disableAdd}
-                              disableRemove={this.props.disableRemove}/>
+                <Form createNewOrder={this.props.createNewOrder}/>
             </div>
         );
     }
