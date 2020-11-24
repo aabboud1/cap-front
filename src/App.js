@@ -5,16 +5,21 @@ import About from './Containers/About';
 import Contactus from './Containers/Contactus';
 import MenuContainer from './Containers/MenuContainer';
 import Order from './Containers/Order';
+import Confirm from './Components/Confirm';
 
 
 const itemsurl = "http://localhost:3000/items"
 const orderurl = 'http://localhost:3000/orders'
+const oiurl = 'http://localhost:3000/order_items'
+const cust = 'http://localhost:3000/customers'
+
 
 class App extends Component {
 
   state = {
     items: [],
-    cartItems: []
+    cartItems: [],
+    orderItems: []
   }
 
   getItems = () => {
@@ -25,8 +30,17 @@ class App extends Component {
       })
   }
 
+  getOrderItems = () => {
+    fetch(oiurl)
+    .then(r => r.json())
+    .then(orderItem => {
+      this.setState({orderItems: orderItem})
+    })
+  }
+
   componentDidMount = () => {
     this.getItems()
+    this.getOrderItems()
   }
 
   _toggleItemSelection = (id, flag) => {
@@ -44,25 +58,45 @@ class App extends Component {
       this._toggleItemSelection(id, true)
       this.setState({cartItems: id})};
 
-    createNewOrder = (e) => {
-      fetch(orderurl, {
-          method: 'POST',
-          headers: { 
-              'Content-Type': 'application/json'
-              // 'Authentication': `Bearer ${localStorage.getItem('token')}`
-          },
-          body: JSON.stringify({ 
-              // name: e.target.elements[0].value,
-              // price: e.target.elements[1].value,
-              // deadline: e.target.elements[2].value
-          })
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          console.log(data)
-      })
+  //   createNewOrder = (e) => {
+  //     fetch(orderurl, {
+  //         method: 'POST',
+  //         headers: { 
+  //             'Content-Type': 'application/json'
+  //             // 'Authentication': `Bearer ${localStorage.getItem('token')}`
+  //         },
+  //         body: JSON.stringify({ 
+  //             // name: e.target.elements[0].value,
+  //             // price: e.target.elements[1].value,
+  //             // deadline: e.target.elements[2].value
+  //         })
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //         console.log(data)
+  //     })
+  // }
 
-  }
+//   createNewOrderItem = (e) => {
+//     fetch(oiurl, {
+//         method: 'POST',
+//         headers: { 
+//             'Content-Type': 'application/json'
+//             // 'Authentication': `Bearer ${localStorage.getItem('token')}`
+//         },
+//         body: JSON.stringify({ 
+//             // name: e.target.elements[0].value,
+//             // price: e.target.elements[1].value,
+//             // deadline: e.target.elements[2].value
+//         })
+//     })
+//     .then((res) => res.json())
+//     .then((data) => {
+//         console.log(data)
+//     })
+// }
+
+
 
 
   render() {
@@ -89,11 +123,16 @@ class App extends Component {
                               removeMyItem={this.removeMyItem}
                               addMyItem={this.addMyItem}
                               disableAdd={false}
-                              disableRemove={false}/>
+                              disableRemove={true}/>
             )}}/>
             <Route exact path='/order' render={() => {
             return(
-              <Order createNewOrder={this.createNewOrder}/>
+              <Order createNewOrder={this.createNewOrder}
+                      orderItems={this.state.orderItems}/>
+            )}}/>
+            <Route exact path='/confirm' render={() => {
+            return(
+              <Confirm />
             )}}/>
         </Switch>
       </Router>

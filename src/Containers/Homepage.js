@@ -9,7 +9,7 @@ class Homepage extends Component {
         return (
             <div>
                 <Navbar />
-                {/* <Calendar /> */}
+                    <h1>Homepage</h1>
                 <Footer />
             </div>
         );

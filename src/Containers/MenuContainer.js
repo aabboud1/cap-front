@@ -4,6 +4,11 @@ import MenuCard from '../Components/MenuCard';
 import Navbar from '../Components/Navbar';
 
 class MenuContainer extends Component {
+
+    state = {
+        cart: []
+    }
+
     render() {
         const { items, removeMyItem, addMyItem } = this.props
         return (

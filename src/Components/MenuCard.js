@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const MenuCard = (props) => {
+  
+  const [quantity, setQuantity] = useState('')
+// fixing quantity to render in cart
+  
     return (
         <div className="ui column">
         <div
@@ -27,18 +31,37 @@ const MenuCard = (props) => {
               {/* <i className="icon lightning"  /> */}
               <bold>Type: {props.item.category}</bold>
             </span>
-            {/* <span>
-              <i className="icon shield" />
-              {props.bot.armor}
-            </span>*/}
+            
             <span>
               <div className="ui center aligned segment basic">
                 {props.disableAdd ? null :
+                <>
                   <button onClick={() => {props.addMyItem(props.item.id)}}>Add Item</button>
+                  <label>
+                Quantity
+                <input
+                      type="number"
+                      min="1"
+                      onChange={(e) => setQuantity(e.target.value)}
+                />
+              </label>
+              </>
+                  
                 }
                 {props.disableRemove ? null :
+                <>
                   <button onClick={() => {props.removeMyItem(props.item.id)}}>Remove Item</button>
-                }
+                  <p>Quantity: {quantity}</p>
+                  {/* <label> */}
+                  {/* <input
+                        type="number"
+                        min="1"
+                        placeholder={quantity}
+                  />
+                </label> */}
+                </>
+                  
+               }
                 
               </div>
             </span>
@@ -47,6 +70,7 @@ const MenuCard = (props) => {
         <br></br>
       </div>
     );
-}
+              }
 
 export default MenuCard;
+
