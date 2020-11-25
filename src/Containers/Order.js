@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import Cart from '../Components/Cart';
 import Form from '../Components/Form';
-
 
 class Order extends Component {
     render() {
 
-
+        const { cartItems, createNewOrder } = this.props
 
         return (
             <div>
-                <Form createNewOrder={this.props.createNewOrder}/>
+                <Form cartItems={cartItems} createNewOrder={createNewOrder} />
             </div>
         );
     }

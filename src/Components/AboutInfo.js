@@ -3,17 +3,19 @@ import React, { Component } from 'react';
 class AboutInfo extends Component {
     render() {
         return (
-            <>
-                <div class="container-fluid">
+            <div className="about">
+                <div class="container-fluid ">
                     <div class="row">
                         <div class="col-sm-8">
-                        <h2>About Company Page</h2>
-                        <h4>Lorem ipsum..</h4>      
-                        <p>Lorem ipsum..</p>
-                        <button class="btn btn-default btn-lg"><a href="http://localhost:3001/contact">Get in touch with us!</a></button>
+                        <h2>Meet the Chef</h2>
+                        <h4>Good quality homemade food with love</h4>      
+                        <p>Growing up in Morocco I always had a passion for making great tasting exotic mediterainin cuisine. 
+                            The food that you order from us is always made fresh and shipped right away to get you the best tasting food.
+                        </p>
+                        <a href="http://localhost:3001/contact" class="btn btn-default btn-lg">Get in touch with us!</a>
                         </div>
                         <div class="col-sm-4">
-                        <span class="glyphicon glyphicon-signal logo"></span>
+                        <span class="glyphicon glyphicon-picture logo"></span>
                         </div>
                     </div>
                     </div>
@@ -21,7 +23,7 @@ class AboutInfo extends Component {
                     <div class="container-fluid bg-grey">
                     <div class="row">
                         <div class="col-sm-4">
-                        <span class="glyphicon glyphicon-globe logo"></span>
+                        <span class="glyphicon glyphicon-cutlery logo"></span>
                         </div>
                         <div class="col-sm-8">
                         <h2>Our Values</h2>
@@ -30,7 +32,7 @@ class AboutInfo extends Component {
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 }

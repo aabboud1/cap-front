@@ -7,7 +7,6 @@ class Contactus extends Component {
     render() {
         return (
             <div>
-                <Navbar />
                 <ContactForm />
             </div>
         );

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Cart from '../Components/Cart';
 import MenuCard from '../Components/MenuCard';
 import Navbar from '../Components/Navbar';
@@ -10,13 +11,11 @@ class MenuContainer extends Component {
     }
 
     render() {
-        const { items, removeMyItem, addMyItem } = this.props
+        const { items, addMyItem } = this.props
         return (
             <>
-            <Navbar />
-            <Cart items={items} removeMyItem={removeMyItem}/>
             <br></br><br></br>
-            <a href="http://localhost:3001/order" class="btn btn-primary btn-lg btn-block">Like what you see? Click here to start your order!!</a>
+            <Link to="/order" class="btn btn-primary btn-lg btn-block">Like what you see? Click here to start your order!!</Link>
             <br></br><br></br>
             <div className="ui four column grid">
                 <div className="row">
@@ -25,8 +24,10 @@ class MenuContainer extends Component {
                         item={item} 
                         key={item.id} 
                         addMyItem={addMyItem}
-                        disableAdd={this.props.disableAdd}
-                        disableRemove={this.props.disableRemove} /> })}
+                        disableRemove={true}
+                        disableAdd={false}
+                        disableQuantity={true}
+                        /> })}
                 </div>
             </div>
             </>

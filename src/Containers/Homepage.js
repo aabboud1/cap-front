@@ -7,10 +7,8 @@ import MenuContainer from './MenuContainer';
 class Homepage extends Component {
     render() {
         return (
-            <div>
-                <Navbar />
-                    <h1>Homepage</h1>
-                <Footer />
+            <div className="home container-fluid text-center" >
+                <h1>Homepage</h1>
             </div>
         );
     }

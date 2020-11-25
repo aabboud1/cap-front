@@ -1,47 +1,22 @@
 import React, { Component } from 'react';
-
-
-const cust = 'http://localhost:3000/orders'
-
+import { Link } from 'react-router-dom';
 
 class Form extends Component {
 
     state = {
-        first: '',
-        last: '',
+        first_name: '',
+        last_name: '',
         address: '',
         date: '',
         email: '', 
         comments: ''     
     }
-
-    createNewCustomer = (e) => {
     
-      fetch(cust, {
-          method: 'POST',
-          headers: { 
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ 
-              first_name: this.state.first,
-              last_name: this.state.last,
-              address: this.state.address,
-              comments: this.state.comments,
-              date: this.state.date,
-              email: this.state.email
-          })
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          console.log(data)
-      })
-    }
-
-    
-
     render() {
+        const { createNewOrder } = this.props;
+
         return (
-            <form style={{backgroundColor:'lavender'}} onSubmit={(e) => this.createNewCustomer(e)}>
+            <form style={{backgroundColor:'lavender'}}>
               <h1 style={{textAlign:"center", backgroundColor:'lavender'}}>Order Information</h1>
               <div>
                 <div>
@@ -49,8 +24,8 @@ class Form extends Component {
                   <input className="form-control"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.first}
-                        onChange={(e) => this.setState({first: e.target.value})}
+                        value={this.state.first_name}
+                        onChange={(e) => this.setState({first_name: e.target.value})}
                   />
                 </div>
                 <div>
@@ -58,8 +33,8 @@ class Form extends Component {
                     <input className="form-control"
                           type="text"
                           placeholder="Last Name"
-                          value={this.state.last}
-                          onChange={(e) => this.setState({last: e.target.value})}
+                          value={this.state.last_name}
+                          onChange={(e) => this.setState({last_name: e.target.value})}
                     />
                 </div>
               </div>
@@ -100,7 +75,8 @@ class Form extends Component {
                         onChange={(e) => this.setState({comments: e.target.value})}
                   />
               </div>
-              <a href="http://localhost:3001/confirm"><input className="btn btn-success btn-block btn-lg" type="submit" value="Submit Order" /></a>
+              <button className="btn btn-success btn-block btn-lg" type="button" onClick={() => createNewOrder(this.state)}>
+                Submit Order </button>
             </form>
         );
     }

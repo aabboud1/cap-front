@@ -10,11 +10,9 @@ class About extends Component {
     render() {
         return (
             <>
-                <Navbar />
                 <Header />
                 <AboutInfo/>
                 {/* <Comments /> */}
-                <Footer />
                 
             </>
         );

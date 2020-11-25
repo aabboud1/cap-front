@@ -12,7 +12,13 @@ class Cart extends Component {
             <div className="ui five column grid">
               <div className="row bot-army-row">
               {items.filter((item) => item.selected).map(item => {
-                return <MenuCard item={item} key={item.id} removeMyItem={removeMyItem} /> })}
+                return <MenuCard 
+                  item={item} 
+                  key={item.id} 
+                  removeMyItem={removeMyItem}
+                  disableAdd={true}
+                  disableQuantity={false}
+                /> })}
               </div>
             </div>
           </div>

@@ -5,8 +5,8 @@ class Header extends Component {
         return (
             <body>
                 <div class="jumbotron text-center">
-                    <h1>Habibi Catering</h1> 
-                    <p>We specialize all events big and small</p> 
+                    <h1>Habibi Virtual Restaurant</h1> 
+                    <p>From our kitchen to your table</p> 
                 </div>
             </body>
         );

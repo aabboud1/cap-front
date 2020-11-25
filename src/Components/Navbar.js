@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 class Navbar extends Component {
     render() {
         return (
@@ -21,7 +20,7 @@ class Navbar extends Component {
                         <li><a href="http://localhost:3001/menu">Menu</a></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right">
-                        <li><a href="#"><span className="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="http://localhost:3001/login"><span className="glyphicon glyphicon-log-in"></span> Admin Login</a></li>
                     </ul>
                     </div>
                 </div>
