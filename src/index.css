@@ -105,21 +105,66 @@ code {
   }
 }
 
-.about {
-  background-image: url("https://media.istockphoto.com/photos/traditional-moroccan-tajine-of-chicken-with-dried-fruits-and-spices-picture-id1143191120?k=6&m=1143191120&s=612x612&w=0&h=zYF0qOpDMy0UCQCFF9wvMEJenrt9n59VuewxLX0bSXo=");
 
-  /* Full height */
-  height: 100%;
-  
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.container {
+/* .container {
   width: auto;
   max-width: 680px;
   padding: 0 15px;
+} */
+
+/* @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap"); */
+
+body {
+  font-family: "Quicksand", sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+  color: #4d4d4d;
+}
+
+#title {
+  text-align: center;
+}
+
+#employee {
+  border-collapse: collapse;
+  border: 3px solid #ddd;
+}
+
+#employee td,
+#employee th {
+  border: 1px solid #ddd;
+  padding: 12px;
+}
+
+#employee tr:hover {
+  background-color: #ddd;
+}
+
+#employee th {
+  padding: 10px;
+  text-align: center;
+  background-color: #4caf50;
+  color: white;
+}
+
+.opration {
+  text-align: center;
+}
+
+.button {
+  border: none;
+  outline: none;
+  font-size: 11px;
+  font-family: "Quicksand", sans-serif;
+  color: #f44336;
+  padding: 3px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #f44336;
+  background-color: transparent;
+}
+
+.button:active {
+  border: 1px solid blue;
 }

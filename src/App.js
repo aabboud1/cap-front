@@ -9,6 +9,8 @@ import Confirm from './Components/Confirm';
 import Navbar from './Components/Navbar';
 import Footer from './Components/Footer';
 import Cart from './Components/Cart';
+import OwnerPage from './Containers/OwnerPage';
+import OrderDetail from './Components/OrderDetail';
 
 
 const logonurl = "http://localhost:3000/api/v1/login"
@@ -20,8 +22,8 @@ class App extends Component {
 
   state = {
     items: [],
-    cartItems: []
-    // orders: []
+    cartItems: [],
+    orders: []
   }
 
   getItems = () => {
@@ -32,17 +34,17 @@ class App extends Component {
       })
   }
 
-  // getOrders = () => {
-  //   fetch(orderurl)
-  //   .then(r => r.json())
-  //   .then(order => {
-  //     this.setState({orders: order})
-  //   })
-  // }
+  getOrders = () => {
+    fetch(orderurl)
+    .then(r => r.json())
+    .then(order => {
+      this.setState({orders: order})
+    })
+  }
 
   componentDidMount = () => {
     this.getItems()
-    // this.getOrders()
+    this.getOrders()
   }
   
 
@@ -122,7 +124,15 @@ class App extends Component {
               <Route exact path='/confirm' render={() => {
               return(
                 <Confirm />
-              )}}/>              
+              )}}/>   
+              <Route exact path='/owner/orders' render={() => {
+              return(
+                <OwnerPage order={this.state.orders} />
+              )}}/> 
+              <Route path='/owner/orders/:orderid' render={() => {
+              return(
+                <OrderDetail />
+              )}}/>                
           </Switch>
         </Router>
         <Footer />
