@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import MenuCard from './MenuCard';
+import { Grid } from 'semantic-ui-react'
+
 
 class Cart extends Component {
   
@@ -8,10 +10,9 @@ class Cart extends Component {
 
         const { items, removeMyItem } = this.props
         return (
-            <div className="ui segment inverted olive bot-army">
-            <div className="ui five column grid">
-              <div className="row bot-army-row">
-              {items.filter((item) => item.selected).map(item => {
+            
+          <Grid style={{background:'grey'}} divided inverted padded>
+            {items.filter((item) => item.selected).map(item => {
                 return <MenuCard 
                   item={item} 
                   key={item.id} 
@@ -19,9 +20,7 @@ class Cart extends Component {
                   disableAdd={true}
                   disableQuantity={false}
                 /> })}
-              </div>
-            </div>
-          </div>
+          </Grid>
         );
     }
 }

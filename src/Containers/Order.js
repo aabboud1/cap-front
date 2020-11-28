@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Cart from '../Components/Cart';
-import Form from '../Components/Form';
+import OrderForm from '../Components/Form';
 
 class Order extends Component {
     render() {
@@ -9,7 +9,7 @@ class Order extends Component {
 
         return (
             <div>
-                <Form cartItems={cartItems} createNewOrder={createNewOrder} />
+                <OrderForm cartItems={cartItems} createNewOrder={createNewOrder} />
             </div>
         );
     }

@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
+import {BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+
 import Homepage from './Containers/Homepage'
 import About from './Containers/About';
 import Contactus from './Containers/Contactus';
@@ -11,9 +14,8 @@ import Footer from './Components/Footer';
 import Cart from './Components/Cart';
 import OwnerPage from './Containers/OwnerPage';
 import OrderDetail from './Components/OrderDetail';
+import LoginForm from './Components/LoginForm'
 
-
-const logonurl = "http://localhost:3000/api/v1/login"
 const itemsurl = "http://localhost:3000/items"
 const orderurl = 'http://localhost:3000/orders'
 
@@ -23,8 +25,10 @@ class App extends Component {
   state = {
     items: [],
     cartItems: [],
-    orders: []
+    orders: [], 
+    currentUser: null,
   }
+  getCurrentUser = currentUser => this.setState({currentUser})
 
   getItems = () => {
       fetch(itemsurl)
@@ -35,11 +39,14 @@ class App extends Component {
   }
 
   getOrders = () => {
-    fetch(orderurl)
-    .then(r => r.json())
-    .then(order => {
-      this.setState({orders: order})
-    })
+    if(localStorage.getItem("token")){
+      const headers = {headers: {"Authentication": `Bearer ${localStorage.getItem("token")}`}}
+      fetch(orderurl, headers)
+      .then(r => r.json())
+      .then(order => {
+        this.setState({orders: order})
+      })
+    }
   }
 
   componentDidMount = () => {
@@ -64,7 +71,10 @@ class App extends Component {
           },
           body: JSON.stringify(body)
       })
-      .then((res) => window.location.href = '/confirm')   
+      .then((res) => {
+        this.setState({cartItems: []});
+
+      });
   }
 
   _toggleItemSelection = (id, flag) => {
@@ -87,8 +97,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <Router>
+          <Navbar logged_in={ !!this.state.currentUser} getCurrentUser={this.getCurrentUser} />
           <Switch>
             <Route exact path='/' render={() => {
               return(
@@ -114,8 +124,9 @@ class App extends Component {
                   </div>
                 )}}/>
               <Route exact path='/order' render={() => {
-              return(
+              return (
                 <div>
+                  
                   <Cart items={this.state.cartItems} removeMyItem={this.removeMyItem}/>
                   <Order cartItems={this.state.cartItems}
                           createNewOrder={this.createNewOrder} />
@@ -132,7 +143,11 @@ class App extends Component {
               <Route path='/owner/orders/:orderid' render={() => {
               return(
                 <OrderDetail />
-              )}}/>                
+              )}}/>
+                       
+            <Route exact path="/login" render={()=> {
+            return !this.state.currentUser ? <LoginForm getCurrentUser={this.getCurrentUser} /> : <Redirect to='/owner/orders'/>
+            }} />               
           </Switch>
         </Router>
         <Footer />
@@ -141,5 +156,5 @@ class App extends Component {
   }
 }
 
-export default App;
+export default  App;
 

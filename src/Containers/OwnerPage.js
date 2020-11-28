@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Table from '../Components/Table';
+import OrderTable from '../Components/Table';
 
 class OwnerPage extends Component {
     render() {
@@ -9,7 +9,7 @@ class OwnerPage extends Component {
         return (
 
             <div>
-                <Table order={order} />
+                <OrderTable order={order} />
             </div>
         );
     }

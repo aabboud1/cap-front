@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Card, Icon, Image} from 'semantic-ui-react'
 
 const MenuCard = (props) => {
     const [quantity, setQuantity] = useState(props.item.quantity)
@@ -8,29 +9,21 @@ const MenuCard = (props) => {
       props.item.quantity = value;
     }
     return (
-        <div className="ui column">
-          <div
-            className="ui card"
-            key={props.item.id}
-          >
-          <div className="image">
-            <img alt="oh no!" src={props.item.image} />
-          </div>
-          <div className="content">
-            <div className="header">
-              {props.item.name}
-            </div>
-            <div className="meta text-wrap">
-              Price: $<small>{props.item.price}</small>
-            </div>
-          </div>
-          <div className="extra content">
-            <span>
-              <bold>Type: {props.item.category}</bold>
-            </span>
-            <span>
-              <div className="ui center aligned segment basic">
-                {props.disableAdd ? null :
+      <Card centered={true}>
+        <img  src={props.item.image} height={250} />
+        <Card.Content>
+          <Card.Header textAlign={"center"}>{props.item.name}</Card.Header>
+            <Card.Meta textAlign={"center"}>
+              <span className='date'>{props.item.category}</span>
+            </Card.Meta>
+            <Card.Description textAlign={"center"}>
+              ${props.item.price}
+            </Card.Description>
+          </Card.Content>
+        <Card.Content extra textAlign={"center"}> 
+          <a>
+            <Icon name='cart arrow down' />
+            {props.disableAdd ? null :
                   <button onClick={() => {props.addMyItem(props.item.id)}}>Add Item</button>
                 }
                 {props.disableQuantity ? null : 
@@ -52,14 +45,12 @@ const MenuCard = (props) => {
                   <button onClick={() => {props.removeMyItem(props.item.id)}}>Remove Item</button>
                 </>  
                 }
-              </div>
-            </span>
-          </div>
-        </div>
-        <br></br>
-      </div>
+          </a>
+        </Card.Content> 
+      </Card>
+
     );
 }
 
 export default MenuCard;
-
+      

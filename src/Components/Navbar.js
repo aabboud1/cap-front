@@ -1,32 +1,81 @@
-import React, { Component } from 'react';
-class Navbar extends Component {
-    render() {
-        return (
-            <nav className="navbar navbar-inverse">
-                <div className="container-fluid">
-                    <div className="navbar-header">
-                    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>
-                        <span className="icon-bar"></span>                        
-                    </button>
-                    <a className="navbar-brand" href="#">Logo</a>
-                    </div>
-                    <div className="collapse navbar-collapse" id="myNavbar">
-                    <ul className="nav navbar-nav">
-                        <li><a href="http://localhost:3001/">Home</a></li>
-                        <li><a href="http://localhost:3001/about">About</a></li>
-                        <li><a href="http://localhost:3001/contact">Contact</a></li>
-                        <li><a href="http://localhost:3001/menu">Menu</a></li>
-                    </ul>
-                    <ul className="nav navbar-nav navbar-right">
-                        <li><a href="http://localhost:3001/login"><span className="glyphicon glyphicon-log-in"></span> Admin Login</a></li>
-                    </ul>
-                    </div>
-                </div>
-            </nav>
-        );
-    }
-}
+import React, { Fragment, useState } from "react";
+import { NavLink, withRouter } from "react-router-dom";
+import { Menu, Segment } from "semantic-ui-react";
+import MenuCard from "./MenuCard";
 
-export default Navbar;
+const Nav = ({logged_in, getCurrentUser, location: { pathname } }) => {
+    const [activeItem, setActiveItem] = useState('home')
+    let handleItemClick = (e, { name }) => setActiveItem(name)
+
+    let logout = () => {
+        localStorage.clear()
+        getCurrentUser(null)
+    };
+
+  return (
+      <div>
+        {logged_in ? (
+            <Segment>
+                <Menu>
+                   <Menu.Item
+                        as={NavLink}
+                        to="/owner/orders"
+                        name="orders"
+                        active={pathname === "/owner/orders"}
+                    /> 
+                    <Menu.Menu position="right">
+                        <Menu.Item  as={NavLink}
+                                    to="/home" 
+                                    name="Logout" 
+                                    onClick={logout} />
+                    </Menu.Menu>
+                </Menu>
+            </Segment>
+        ) : (
+            <Segment>
+                <Menu secondary>
+                    <Menu.Item
+                        as={NavLink}
+                        name='home'
+                        active={activeItem === 'home'}
+                        to="/home"
+                        onClick={handleItemClick}
+                    />
+                    <Menu.Item
+                        as={NavLink}
+                        name='about'
+                        to="/about"
+                        active={activeItem === 'about'}
+                        onClick={handleItemClick}
+                    />
+                    <Menu.Item
+                        as={NavLink}
+                        name='menu'
+                        to="/menu"
+                        active={activeItem === 'menu'}
+                        onClick={handleItemClick}
+                    />
+                    <Menu.Item
+                        as={NavLink}
+                        name="contact us"
+                        to="/contact"
+                        active={activeItem === 'contact us'}
+                        onClick={handleItemClick}
+                    />
+                    <Menu.Menu position='right'>
+                        <Menu.Item
+                            as={NavLink}
+                            name="login"
+                            to="/login"
+                            active={activeItem === 'login'}
+                            onClick={handleItemClick}
+                        />
+                    </Menu.Menu>
+                </Menu>
+            </Segment>
+        )}
+      </div>
+  );
+};
+
+export default withRouter(Nav);

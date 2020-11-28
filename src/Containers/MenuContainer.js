@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Cart from '../Components/Cart';
 import MenuCard from '../Components/MenuCard';
-import Navbar from '../Components/Navbar';
+import { Grid } from 'semantic-ui-react'
 
 class MenuContainer extends Component {
 
@@ -14,22 +13,18 @@ class MenuContainer extends Component {
         const { items, addMyItem } = this.props
         return (
             <>
-            <br></br><br></br>
-            <Link to="/order" class="btn btn-primary btn-lg btn-block">Like what you see? Click here to start your order!!</Link>
-            <br></br><br></br>
-            <div className="ui four column grid">
-                <div className="row">
+                <Link to="/order" class="btn btn-primary btn-lg btn-block">Like what you see? Click here to start your order!!</Link>
+                <Grid style={{background:'salmon'}} columns='equal' divided  padded>
                     {items.map(item => {
-                        return <MenuCard 
-                        item={item} 
-                        key={item.id} 
-                        addMyItem={addMyItem}
-                        disableRemove={true}
-                        disableAdd={false}
-                        disableQuantity={true}
-                        /> })}
-                </div>
-            </div>
+                            return <MenuCard 
+                            item={item} 
+                            key={item.id} 
+                            addMyItem={addMyItem}
+                            disableRemove={true}
+                            disableAdd={false}
+                            disableQuantity={true}
+                            /> })}
+                </Grid>
             </>
         );
     }

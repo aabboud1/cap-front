@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Form, Input, TextArea, Button, Select, Grid } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
-class Form extends Component {
+class OrderForm extends Component {
 
     state = {
         first_name: '',
@@ -9,77 +10,130 @@ class Form extends Component {
         address: '',
         date: '',
         email: '', 
-        comments: ''     
+        comments: '',
+        error: false,
+        street: '',
+        city: '',
+        state: '',
+        zip: ''   
     }
     
+    handleChange = (e, { name, value }) => {
+      this.setState({ [name]: value });
+    };
+
+    handleaddress = () => {
+      var address = this.state.street + this.state.city
+      this.setState({address: address })
+    }
+
     render() {
         const { createNewOrder } = this.props;
 
+
         return (
-            <form style={{backgroundColor:'lavender'}}>
-              <h1 style={{textAlign:"center", backgroundColor:'lavender'}}>Order Information</h1>
-              <div>
-                <div>
-                  <label>First Name</label>
-                  <input className="form-control"
-                        type="text"
-                        placeholder="First Name"
-                        value={this.state.first_name}
-                        onChange={(e) => this.setState({first_name: e.target.value})}
+          <Grid centered columns={2} padded>
+            <Grid.Column>
+              <Form widths='equal'>
+                <Form.Group>
+                  <Form.Field
+                    id='form-input-control-first-name'
+                    control={Input}
+                    name="first_name"
+                    label='First name'
+                    placeholder='First name'
+                    onChange={this.handleChange}
+                    value={this.state.first_name}
+                    error={this.state.error}
                   />
-                </div>
-                <div>
-                    <label>Last Name</label>
-                    <input className="form-control"
-                          type="text"
-                          placeholder="Last Name"
-                          value={this.state.last_name}
-                          onChange={(e) => this.setState({last_name: e.target.value})}
+                  <Form.Field
+                    id='form-input-control-last-name'
+                    control={Input}
+                    name="last_name"
+                    label='Last name'
+                    placeholder='Last name'
+                    onChange={this.handleChange}
+                    value={this.state.last_name}
+                    error={this.state.error}
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Field
+                      id='form-input-control-error-email'
+                      control={Input}
+                      label='Email'
+                      name='email'
+                      placeholder='joe@schmoe.com'
+                      onChange={this.handleChange}
+                      value={this.state.email}
+                      error={this.state.error}
                     />
-                </div>
-              </div>
-              <div className="form-group">
-                <label>Address</label>
-                  <input className="form-control"
-                        type="text"
-                        placeholder="Street, City, State, Zip Code"
-                        step="0.01"
-                        value={this.state.address}
-                        onChange={(e) => this.setState({address: e.target.value})}
+                    <Form.Field
+                    id='form-input-control-date'
+                    control={Input}
+                    name="date"
+                    label='Date'
+                    placeholder='MM/DD/YYYY'
+                    onChange={this.handleChange}
+                    value={this.state.date}
+                    error={this.state.error}
                   />
-              </div>
-              <div className="form-group">
-                <label>Delivery Date</label>
-                  <input className="form-control" 
-                        type="date"
-                        value={this.state.date}
-                        onChange={(e) => this.setState({date: e.target.value})}
+                </Form.Group>
+                <Form.Group >
+                  <Form.Field
+                    id='form-input-control-address'
+                    control={Input}
+                    name="address"
+                    label='Address'
+                    placeholder='Street'
+                    onChange={this.handleChange}
+                    value={this.state.address}
+                    error={this.state.error}
                   />
-              </div>
-              <div className="form-group">
-                <label>Email Address</label>
-                  <input className="form-control"
-                        type="email"
-                        placeholder="Please enter a valid E-mail"
-                        value={this.state.email}
-                        onChange={(e) => this.setState({email: e.target.value})}
+                  <Form.Field
+                    id='form-input-control-address'
+                    control={Input}
+                    name="city"
+                    label='City'
+                    placeholder='City'
+                    onChange={this.handleChange}
+                    value={this.state.city}
+                    error={this.state.error}
                   />
-              </div>
-              <label for="comment"> Comments</label>
-              <div className="form-group">
-                  <textarea className="md-textarea form-control"
-                        rows='5'
-                        id='comment'
-                        placeholder="250 Characters or less"
-                        value={this.state.comments}
-                        onChange={(e) => this.setState({comments: e.target.value})}
+                  <Form.Field
+                    id='form-input-control-address'
+                    control={Input}
+                    name="state"
+                    label='State'
+                    placeholder='State'
+                    onChange={this.handleChange}
+                    value={this.state.state}
+                    error={this.state.error}
                   />
-              </div>
-              <button className="btn btn-success btn-block btn-lg" type="button" onClick={() => createNewOrder(this.state)}>
-                Submit Order </button>
-            </form>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Field
+                      id='form-input-control-comments'
+                      control={TextArea}
+                      name="comments"
+                      label='Comments'
+                      placeholder='250 Characters Max'
+                      onChange={this.handleChange}
+                      value={this.state.comments}
+                      error={this.state.error}
+                    />
+                </Form.Group>
+                <Form.Button 
+                            control={Button}
+                            onClick={this.props.createNewOrder} 
+                            content='Place Order'/>
+              </Form>
+            </Grid.Column>
+          
+            
+          </Grid>
         );
     }
 }
 
-export default Form;
+export default OrderForm;
