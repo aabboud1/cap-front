@@ -41,9 +41,11 @@ class OrderTable extends Component {
         console.log(order)
 
         return (
-            <div>
+            <div >
+                <br></br>
                 <h1 id='title'>Orders</h1>
-                <table id='employee'>
+                <div className="table">
+                   <table id='employee'>
                     <thead>
                         <tr>{renderHeader()}</tr>
                     </thead>
@@ -51,6 +53,8 @@ class OrderTable extends Component {
                         {renderBody()}
                     </tbody>
                 </table>   
+                </div>
+                 
             </div>
         );
     }

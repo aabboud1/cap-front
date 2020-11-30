@@ -29,9 +29,10 @@ const MenuCard = (props) => {
                 {props.disableQuantity ? null : 
                     <div>
                       <label>
-                        Quantity
+                        Quantity: 
                       </label>
                       <input
+                          className="form-control form-control-lg cards"
                           type="number"
                           min="1"
                           value={quantity}

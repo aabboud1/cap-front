@@ -12,10 +12,6 @@ class OrderForm extends Component {
         email: '', 
         comments: '',
         error: false,
-        street: '',
-        city: '',
-        state: '',
-        zip: ''   
     }
     
     handleChange = (e, { name, value }) => {
@@ -68,16 +64,13 @@ class OrderForm extends Component {
                       value={this.state.email}
                       error={this.state.error}
                     />
-                    <Form.Field
-                    id='form-input-control-date'
-                    control={Input}
-                    name="date"
-                    label='Date'
-                    placeholder='MM/DD/YYYY'
-                    onChange={this.handleChange}
-                    value={this.state.date}
-                    error={this.state.error}
-                  />
+                    <label>Date
+                      <input className="form-control" 
+                        type="date"
+                        value={this.state.date}
+                        onChange={(e) => this.setState({date: e.target.value})} />
+                    </label>
+                   
                 </Form.Group>
                 <Form.Group >
                   <Form.Field
@@ -123,10 +116,8 @@ class OrderForm extends Component {
                       error={this.state.error}
                     />
                 </Form.Group>
-                <Form.Button 
-                            control={Button}
-                            onClick={this.props.createNewOrder} 
-                            content='Place Order'/>
+                  <button className="btn btn-success btn-block btn-lg" type="button" onClick={() => createNewOrder(this.state)}>
+                  Submit Order </button>
               </Form>
             </Grid.Column>
           

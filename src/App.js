@@ -100,7 +100,7 @@ class App extends Component {
         <Router>
           <Navbar logged_in={ !!this.state.currentUser} getCurrentUser={this.getCurrentUser} />
           <Switch>
-            <Route exact path='/' render={() => {
+            <Route exact path='/home' render={() => {
               return(
                 <Homepage 
                           items={this.state.items} />
@@ -150,7 +150,7 @@ class App extends Component {
             }} />               
           </Switch>
         </Router>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

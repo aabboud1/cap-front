@@ -10,8 +10,8 @@ class Cart extends Component {
 
         const { items, removeMyItem } = this.props
         return (
-            
-          <Grid style={{background:'grey'}} divided inverted padded>
+            <>
+          <Grid style={{background:'grey'}} columns='equal' divided  padded>
             {items.filter((item) => item.selected).map(item => {
                 return <MenuCard 
                   item={item} 
@@ -21,6 +21,7 @@ class Cart extends Component {
                   disableQuantity={false}
                 /> })}
           </Grid>
+          </>
         );
     }
 }
