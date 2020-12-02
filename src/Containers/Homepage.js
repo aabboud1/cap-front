@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
+import Header from '../Components/Header'
 
 
 class Homepage extends Component {
     render() {
         return (
            
-            <div className="home">
-                <div class="container-fluid bg-1 text-center">
-                    <div class="jumbotron">
-                        <h1>Company</h1> 
-                        <p>We specialize in blablabla</p> 
-                    </div>
+            <div className="hi">
+               <Header />
+
+                <div class="container">
+                <div class="row">
+                    
                 </div>
+            </div>
           </div>
             
           

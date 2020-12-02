@@ -28,8 +28,9 @@ class OrderForm extends Component {
 
 
         return (
-          <Grid centered columns={2} padded>
-            <Grid.Column>
+          
+            <Grid centered columns={2} padded>
+            <Grid.Column className='for'>
               <Form widths='equal'>
                 <Form.Group>
                   <Form.Field
@@ -41,6 +42,7 @@ class OrderForm extends Component {
                     onChange={this.handleChange}
                     value={this.state.first_name}
                     error={this.state.error}
+                    required={true}
                   />
                   <Form.Field
                     id='form-input-control-last-name'
@@ -51,6 +53,7 @@ class OrderForm extends Component {
                     onChange={this.handleChange}
                     value={this.state.last_name}
                     error={this.state.error}
+                    required={true}
                   />
                 </Form.Group>
                 <Form.Group>
@@ -63,12 +66,14 @@ class OrderForm extends Component {
                       onChange={this.handleChange}
                       value={this.state.email}
                       error={this.state.error}
+                      required={true}
                     />
                     <label>Date
                       <input className="form-control" 
                         type="date"
                         value={this.state.date}
-                        onChange={(e) => this.setState({date: e.target.value})} />
+                        onChange={(e) => this.setState({date: e.target.value})}
+                        required />
                     </label>
                    
                 </Form.Group>
@@ -116,13 +121,15 @@ class OrderForm extends Component {
                       error={this.state.error}
                     />
                 </Form.Group>
-                  <button className="btn btn-success btn-block btn-lg" type="button" onClick={() => createNewOrder(this.state)}>
+                  <button className="btn btn-success btn-block btn-lg" type="button" onClick={() => {createNewOrder(this.state)}}>
                   Submit Order </button>
               </Form>
             </Grid.Column>
           
             
           </Grid>
+          
+          
         );
     }
 }

@@ -2,13 +2,31 @@ import React, { Component } from 'react';
 import { Icon, Label, Menu, Table } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
+const orderurl = 'http://localhost:3000/orders'
+
 class OrderTable extends Component {
 
-    
+    state = {
+        orders: []
+    }
+
+    getOrders = () => {
+        if(localStorage.getItem("token")){
+          const headers = {headers: {"Authentication": `Bearer ${localStorage.getItem("token")}`}}
+          fetch(orderurl, headers)
+          .then(r => r.json())
+          .then(order => {
+            this.setState({orders: order})
+          })
+        }
+    }
+
+
+    componentDidMount = () => {
+        this.getOrders()
+    }
 
     render() {
-
-        const { order } = this.props
 
         const renderHeader = () => {
             let headerElement = ['order id', 'first name', 'last name', 'email', 'delivery address', 'comments', 'delivery date' , 'order status']
@@ -19,7 +37,7 @@ class OrderTable extends Component {
         }
 
         const renderBody = () => {
-            return order && order.map(({ id, first_name, last_name, email, address, comments, date, status }) => {
+            return this.state.orders.map(({ id, first_name, last_name, email, address, comments, date, status }) => {
                 return (
                     <tr key={id}>
                         <td><Link to={`/owner/orders/${id}`}>{id}</Link></td>
@@ -38,18 +56,16 @@ class OrderTable extends Component {
             })
         }
 
-        console.log(order)
-
         return (
             <div >
                 <br></br>
-                <h1 id='title'>Orders</h1>
+                <h1 id='title' >Orders</h1>
                 <div className="table">
                    <table id='employee'>
                     <thead>
                         <tr>{renderHeader()}</tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{backgroundColor:'white'}}>
                         {renderBody()}
                     </tbody>
                 </table>   

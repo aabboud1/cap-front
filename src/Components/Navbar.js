@@ -33,7 +33,8 @@ const Nav = ({logged_in, getCurrentUser, location: { pathname } }) => {
             </Segment>
         ) : (
             <Segment>
-                <Menu secondary>
+                <Menu secondary color={"green"}>
+                <iframe src="https://giphy.com/embed/2cWES9lZqTNsLL0J9l" width="50" height="50"></iframe>
                     <Menu.Item
                         as={NavLink}
                         name='home'

@@ -33,7 +33,6 @@ class LoginForm extends React.Component {
         if(data.authenticated) {
             console.log(data)
             localStorage.setItem("token", data.token)
-
             this.props.getCurrentUser(data.user)
         } else {
             this.setState({error: true});

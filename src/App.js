@@ -38,20 +38,9 @@ class App extends Component {
       })
   }
 
-  getOrders = () => {
-    if(localStorage.getItem("token")){
-      const headers = {headers: {"Authentication": `Bearer ${localStorage.getItem("token")}`}}
-      fetch(orderurl, headers)
-      .then(r => r.json())
-      .then(order => {
-        this.setState({orders: order})
-      })
-    }
-  }
-
   componentDidMount = () => {
     this.getItems()
-    this.getOrders()
+    console.log()
   }
   
 
@@ -64,6 +53,7 @@ class App extends Component {
       }))
     };
     
+    if (body.items.length) {
       fetch(orderurl, {
           method: 'POST',
           headers: { 
@@ -73,8 +63,11 @@ class App extends Component {
       })
       .then((res) => {
         this.setState({cartItems: []});
-
+        window.location.href = '/home'
       });
+    } else {
+      window.location.href = '/menu'
+    }
   }
 
   _toggleItemSelection = (id, flag) => {
@@ -98,13 +91,14 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Navbar logged_in={ !!this.state.currentUser} getCurrentUser={this.getCurrentUser} />
+          <Navbar logged_in={ !!localStorage.getItem("token") } getCurrentUser={this.getCurrentUser} />
           <Switch>
             <Route exact path='/home' render={() => {
-              return(
-                <Homepage 
-                          items={this.state.items} />
-              )}}/>
+              return !localStorage.getItem("token")  ? 
+                      <Homepage 
+                          items={this.state.items} /> :
+                      <Redirect to="/owner/orders" />
+              }}/>
               <Route exact path='/about' render={() => {
                 return(
                   <About />
@@ -131,23 +125,18 @@ class App extends Component {
                   <Order cartItems={this.state.cartItems}
                           createNewOrder={this.createNewOrder} />
                 </div>
-              )}}/>
-              <Route exact path='/confirm' render={() => {
-              return(
-                <Confirm />
-              )}}/>   
-              <Route exact path='/owner/orders' render={() => {
-              return(
-                <OwnerPage order={this.state.orders} />
               )}}/> 
+              <Route exact path='/owner/orders' render={() => {
+              return !localStorage.getItem("token")  ? <Redirect to="/home" /> : <OwnerPage />
+              }}/> 
               <Route path='/owner/orders/:orderid' render={() => {
-              return(
-                <OrderDetail />
-              )}}/>
+              return !localStorage.getItem("token")  ? <Redirect to="/home" /> : <OrderDetail />
+              }}/>
                        
             <Route exact path="/login" render={()=> {
-            return !this.state.currentUser ? <LoginForm getCurrentUser={this.getCurrentUser} /> : <Redirect to='/owner/orders'/>
-            }} />               
+            return !localStorage.getItem("token") ? <LoginForm getCurrentUser={this.getCurrentUser} /> : <Redirect to='/owner/orders'/>
+            }} />
+            <Redirect to="/home" />            
           </Switch>
         </Router>
         {/* <Footer /> */}
