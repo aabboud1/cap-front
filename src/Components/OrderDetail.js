@@ -23,7 +23,7 @@ export default function OrderDetail(props) {
     }, []);
 
     const renderHeader = () => {
-        let headerElement = ['name', 'price', 'category', 'quantity']
+        let headerElement = ['name', 'total', 'category', 'quantity']
 
         return headerElement.map((key, index) => {
             return <th key={index}>{key.toUpperCase()}</th>
@@ -35,13 +35,22 @@ export default function OrderDetail(props) {
             return (
                 <tr key={item_id}>
                     <td>{name}</td>
-                    <td>{price}</td>
+                    <td>{price * quantity}</td>
                     <td>{category}</td>
                     <td>{quantity}</td>
                 </tr>
             )
         })
     }
+
+    // const total = () => {
+    //     return orderItems.map(({ price, quantity }) => {
+    //         let totalsum = 0
+    //         return (
+    //             totalsum =+ (price * quantity)
+    //         )
+    //     })
+    // }
 
     return (
         <div >

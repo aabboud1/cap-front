@@ -102,12 +102,12 @@ code {
   background-color: #f4511e;
   color: #fff;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .col-sm-4 {
     text-align: center;
     margin: 25px 0;
   }
-}
+} */
 /* 
 Footer {
   position: absolute;
@@ -195,4 +195,9 @@ Footer {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+.pic {
+  height: 200px;
+  width: auto;
 }
