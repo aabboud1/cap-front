@@ -11,6 +11,8 @@ class Carousel extends Component {
                         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#myCarousel" data-slide-to="1"></li>
                         <li data-target="#myCarousel" data-slide-to="2"></li>
+                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                        <li data-target="#myCarousel" data-slide-to="4"></li>
                     </ol>
 
                 {/* <!-- Wrapper for slides --> */}
@@ -23,7 +25,13 @@ class Carousel extends Component {
                     <h4><img className='pic' src="https://malloryontravel.com/wp-content/uploads/2011/04/Iain_Mallory_003601.jpg"></img></h4>
                     </div>
                     <div class="item">
+                    <h4><img className='pic' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBXLyUB01spjNzphfCeuaBu4q6tug64-ITg&usqp=CAU"></img></h4>
+                    </div>
+                    <div class="item">
                     <h4><img className='pic' src="https://previews.123rf.com/images/mathess/mathess1412/mathess141200743/34750689-olive-stall-at-a-market-in-meknes-morocco.jpg"></img></h4>
+                    </div>
+                    <div class="item">
+                    <h4><img className='pic' src="https://cdn.kimkim.com/files/a/content_articles/featured_photos/ef06b7e2528cf84f10b83cf67ea45499ed7b0922/big-8aa783c46c1c7270be36d6c256db0570.jpg"></img></h4>
                     </div>
                 </div>
 

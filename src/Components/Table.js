@@ -29,7 +29,7 @@ class OrderTable extends Component {
     render() {
 
         const renderHeader = () => {
-            let headerElement = ['order id', 'first name', 'last name', 'email', 'delivery address', 'comments', 'delivery date' , 'order status']
+            let headerElement = ['order id', 'first name', 'last name', 'email', 'delivery address', 'comments', 'delivery date' ]
     
             return headerElement.map((key, index) => {
                 return <th key={index}>{key.toUpperCase()}</th>
@@ -37,7 +37,7 @@ class OrderTable extends Component {
         }
 
         const renderBody = () => {
-            return this.state.orders.map(({ id, first_name, last_name, email, address, comments, date, status }) => {
+            return this.state.orders.map(({ id, first_name, last_name, email, address, comments, date }) => {
                 return (
                     <tr key={id}>
                         <td><Link to={`/owner/orders/${id}`}>{id}</Link></td>
@@ -47,7 +47,7 @@ class OrderTable extends Component {
                         <td>{address}</td>
                         <td>{comments}</td>
                         <td>{date}</td>
-                        <td>{status}</td>
+                        
                         {/* <td class ame='opration'>
                             <button className='button' onClick={() => removeData(id)}>Delete</button>
                         </td> */}
