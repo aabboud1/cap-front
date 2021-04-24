@@ -5,7 +5,8 @@ class Footer extends Component {
         return (
 
                 <footer class="footer">
-                    <p class="container-fluid text-center container">Habibi Catering</p>
+                    <p class="container-fluid text-center container">Habibi Moroccan Take Out</p>
+                    <p>Phone number (410) 963-3979</p>
                 </footer>
         );
     }
