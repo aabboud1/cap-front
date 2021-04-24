@@ -48,9 +48,7 @@ class OrderTable extends Component {
                         <td>{comments}</td>
                         <td>{date}</td>
                         
-                        {/* <td class ame='opration'>
-                            <button className='button' onClick={() => removeData(id)}>Delete</button>
-                        </td> */}
+                        
                     </tr>
                 )
             })
