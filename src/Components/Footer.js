@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Contactus from '../Containers/Contactus';
 
 class Footer extends Component {
     render() {
