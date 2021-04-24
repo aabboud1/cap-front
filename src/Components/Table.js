@@ -27,7 +27,7 @@ class OrderTable extends Component {
     }
 
     render() {
-
+        // self rendeirng a table head
         const renderHeader = () => {
             let headerElement = ['order id', 'first name', 'last name', 'email', 'delivery address', 'comments', 'delivery date' ]
     
